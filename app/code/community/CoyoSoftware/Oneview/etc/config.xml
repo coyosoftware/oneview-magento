@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CoyoSoftware_Oneview>
+            <version>1.0.0</version>
+        </CoyoSoftware_Oneview>
+    </modules>
+    
+    <global>
+        <helpers>
+            <coyosoftware_oneview>
+                <class>CoyoSoftware_Oneview_Helper</class>
+            </coyosoftware_oneview>
+        </helpers>
+        <blocks>
+            <coyosoftware_oneview>
+                <class>CoyoSoftware_Oneview_Block</class>
+            </coyosoftware_oneview>
+        </blocks>
+        <events>
+            <newsletter_subscriber_save_commit_after>
+                <observers>
+                    <coyosoftware_oneview_observer>
+                        <class>CoyoSoftware_Oneview_Model_Observer</class>
+                        <method>createOneviewContactAfterSubscribe</method>
+                    </coyosoftware_oneview_observer>
+                </observers>
+            </newsletter_subscriber_save_commit_after>
+            <customer_register_success>
+                <observers>
+                    <coyosoftware_oneview_customer_register_success>
+                        <class>CoyoSoftware_Oneview_Model_Observer</class>
+                        <method>createOneviewContactAfterRegister</method>
+                    </coyosoftware_oneview_customer_register_success>
+                </observers>
+            </customer_register_success>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <CoyoSoftware_Oneview after="Mage_Adminhtml">CoyoSoftware_Oneview</CoyoSoftware_Oneview>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>
